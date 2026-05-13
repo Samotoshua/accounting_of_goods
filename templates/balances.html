@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Облік залишків (inventory)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Система управління складом</h1>
+
+        <ul class="nav nav-pills mb-4">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Товари</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/warehouses">Склади</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/transactions">Транзакції</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/balances">Облік залишків</a>
+            </li>
+        </ul>
+
+        <h2>Облік залишків (Матеріалізована таблиця)</h2>
+        <table class="table table-bordered table-striped mt-3">
+            <thead class="table-dark">
+                <tr>
+                    <th>Склад</th>
+                    <th>Товар</th>
+                    <th>Кількість (шт)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in balances %}
+                <tr>
+                    <td>{{ item.warehouse_name }}</td>
+                    <td>{{ item.product_name }}</td>
+                    <td>{{ item.quantity }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="3" class="text-center">Фізичних записів у таблиці inventory поки немає.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>

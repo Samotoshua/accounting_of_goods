@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редагування складу</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Система управління складом</h1>
+
+        <ul class="nav nav-pills mb-4">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Товари</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/warehouses">Склади</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/inventory">Транзакції</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/balances">Облік залишків</a>
+            </li>
+        </ul>
+
+        <div class="card">
+            <div class="card-header">
+                <h3>Редагувати склад #{{ warehouse.id }}</h3>
+            </div>
+            <div class="card-body">
+                {% if warehouse %}
+                <form action="/update_warehouse/{{ warehouse.id }}" method="post">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Назва складу</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ warehouse.name }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Адреса</label>
+                        <input type="text" class="form-control" id="address" name="address" value="{{ warehouse.address }}" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Зберегти зміни</button>
+                    <a href="/warehouses" class="btn btn-secondary">Скасувати</a>
+                </form>
+                {% else %}
+                <p>Склад не знайдено!</p>
+                <a href="/warehouses" class="btn btn-secondary">Назад до складів</a>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
